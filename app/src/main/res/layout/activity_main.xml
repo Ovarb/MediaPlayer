@@ -13,11 +13,19 @@
         android:text="Hello World!" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/play_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:layout_weight="0"
         android:text="PlayButton" />
 
+    <Button
+        android:id="@+id/pause_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_weight="0"
+        android:text="PauseButton" />
 
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.example.ovarb.mediaplayer;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,7 +32,11 @@ public class MainActivity extends AppCompatActivity {
              @Override
              public void onClick(View v) {
                  displayMessage("Play is pressed");
+
+                 int songDuration = player.getDuration();
+                 displayMessage("" + songDuration);
                  playSong();
+
              }
         });
 

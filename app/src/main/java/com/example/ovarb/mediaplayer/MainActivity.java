@@ -1,5 +1,6 @@
 package com.example.ovarb.mediaplayer;
 
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,10 +9,19 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    MediaPlayer player;
+    int audioId = R.raw.ohmss_short;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //create MediaPlayer instance
+        player = MediaPlayer.create(this, audioId);
+
 
         //find playbutton
         Button buttonPlay = (Button) findViewById(R.id.button_play);
@@ -21,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
              @Override
              public void onClick(View v) {
                  displayMessage("Play is pressed");
+                 playSong();
              }
         });
 
@@ -34,21 +45,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 displayMessage("Pause is pressed");
+                pauseSong();
             }
         });
-
-
-
-
-
-
-
-
     }
+
+
 
     private void displayMessage(String message) {
         //find display_action
         TextView displayAction = (TextView) findViewById(R.id.display_action);
         displayAction.setText(message);
+    }
+
+    public void playSong() {
+        player.start();
+    }
+
+    public void pauseSong() {
+        player.pause();
     }
 }

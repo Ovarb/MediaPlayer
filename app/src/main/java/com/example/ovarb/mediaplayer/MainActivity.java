@@ -60,6 +60,19 @@ public class MainActivity extends AppCompatActivity {
                 pauseSong();
             }
         });
+
+        //find resetbutton
+        Button buttonReset = (Button) findViewById(R.id.button_reset);
+
+        //set resetbutton onclick listener
+        buttonReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayMessage("Reset is pressed");
+                resetSong();
+            }
+        });
+
     }
 
 
@@ -76,5 +89,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void pauseSong() {
         player.pause();
+    }
+
+    public void resetSong() {
+        player.seekTo(0);
     }
 }

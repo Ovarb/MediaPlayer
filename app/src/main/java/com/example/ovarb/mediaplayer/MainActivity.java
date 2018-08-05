@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 Toast.makeText(MainActivity.this, "Hop!", Toast.LENGTH_SHORT).show();
-                displayMessage("done");
+                displayMessage("done!");
             }
         });
 

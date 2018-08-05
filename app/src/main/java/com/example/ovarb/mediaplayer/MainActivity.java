@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +23,13 @@ public class MainActivity extends AppCompatActivity {
 
         //create MediaPlayer instance
         player = MediaPlayer.create(this, audioId);
-
+        player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                Toast.makeText(MainActivity.this, "Hop!", Toast.LENGTH_SHORT).show();
+                displayMessage("done");
+            }
+        });
 
         //find playbutton
         Button buttonPlay = (Button) findViewById(R.id.button_play);

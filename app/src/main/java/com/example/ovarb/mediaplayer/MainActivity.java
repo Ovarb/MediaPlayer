@@ -7,11 +7,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    MediaPlayer player;
+    MediaPlayer mPlayer;
     int audioId = R.raw.ohmss_short;
 
 
@@ -22,14 +21,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //create MediaPlayer instance
-        player = MediaPlayer.create(this, audioId);
-        player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                Toast.makeText(MainActivity.this, "Hop!", Toast.LENGTH_SHORT).show();
-                displayMessage("done!");
-            }
-        });
+        mPlayer = MediaPlayer.create(this, audioId);
+
 
         //find playbutton
         Button buttonPlay = (Button) findViewById(R.id.button_play);
@@ -40,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
              public void onClick(View v) {
                  displayMessage("Play is pressed");
 
-                 int songDuration = player.getDuration();
+                 int songDuration = mPlayer.getDuration();
                  displayMessage("" + songDuration);
                  playSong();
 
@@ -84,14 +77,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void playSong() {
-        player.start();
+        mPlayer.start();
     }
 
     public void pauseSong() {
-        player.pause();
+        mPlayer.pause();
     }
 
     public void resetSong() {
-        player.seekTo(0);
+        mPlayer.seekTo(0);
     }
+
+    @Override
+    protected void onStop() {
+        releaseMediaPlayer();
+        super.onStop();
+    }
+
+    /**
+     * Clean up the media player by releasing its resources.
+     */
+    private void releaseMediaPlayer() {
+
+        Log.i("MainActivity", "releaseMediaPlayer() is evoked");
+
+        // If the media player is not null, then it may be currently playing a sound.
+        if (mPlayer != null) {
+            // Regardless of the current state of the media player, release its resources
+            // because we no longer need it.
+            mPlayer.release();
+
+            Log.i("MainActivity", "mMediaPlayer is released");
+
+            // Set the media player back to null. For our code, we've decided that
+            // setting the media player to null is an easy way to tell that the media player
+            // is not configured to play an audio file at the moment.
+            mPlayer = null;
+        }
+    }
+
 }

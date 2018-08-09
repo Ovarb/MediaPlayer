@@ -66,6 +66,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button duckButton = (Button) findViewById(R.id.button_lower);
+
+        //set duckButton onclick listener
+        duckButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayMessage("Duck is pressed");
+                duckVolume();
+            }
+        });
+
+        Button unduckButton = (Button) findViewById(R.id.button_louder);
+
+        //set unduckButton onclick listener
+        unduckButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayMessage("Unduck is pressed");
+                unduckVolume();
+            }
+        });
+
     }
 
 
@@ -82,6 +104,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void pauseSong() {
         mPlayer.pause();
+    }
+
+    public void duckVolume() {
+        mPlayer.setVolume(0.3f, 0.3f);
+    }
+
+    public void unduckVolume() {
+        mPlayer.setVolume(1f, 1f);
     }
 
     public void resetSong() {

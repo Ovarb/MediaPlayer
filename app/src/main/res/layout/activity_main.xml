@@ -37,4 +37,20 @@
         android:layout_weight="0"
         android:text="Reset" />
 
+    <Button
+        android:id="@+id/button_lower"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_weight="0"
+        android:text="Lower" />
+
+    <Button
+        android:id="@+id/button_louder"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_weight="0"
+        android:text="Lowder" />
+
 </LinearLayout>
